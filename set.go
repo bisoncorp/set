@@ -90,7 +90,7 @@ func (s mapset[T]) ForEach(op OperationFunc[T]) {
 func (s mapset[T]) String() string {
 	els := make([]string, 0, s.Len())
 	s.ForEach(func(value T) {
-		els = append(els, fmt.Sprintf("%s", value))
+		els = append(els, fmt.Sprintf("%v", value))
 	})	
 	return fmt.Sprintf("{ %s }", strings.Join(els, ", "))
 }
