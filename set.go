@@ -21,6 +21,7 @@ type Set[T comparable] interface {
 	Map(MapFunc[T]) Set[T]
 	Filter(FilterFunc[T]) Set[T]
 	ForEach(OperationFunc[T])
+	Clone() Set[T]
 }
 
 type empty struct{}
@@ -93,4 +94,8 @@ func (s mapset[T]) String() string {
 		els = append(els, fmt.Sprintf("%v", value))
 	})	
 	return fmt.Sprintf("{ %s }", strings.Join(els, ", "))
+}
+
+func (s mapset[T]) Clone() Set[T] {
+	return Union[T](s, New[T]())
 }
